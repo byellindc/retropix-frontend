@@ -15,8 +15,8 @@ import {
   withRouter
 } from "react-router-dom";
 
-import music from './audio/surf.wav';
-import Sound from 'react-sound';
+import music from "./audio/surf.wav";
+import Sound from "react-sound";
 
 class App extends Component {
   constructor() {
@@ -46,25 +46,12 @@ class App extends Component {
 
   loadUsers() {
     return Adapter.getUsers().then(users => {
-      // const users = userList.map(user => {
-      //   return {
-      //     key: user.id,
-      //     text: user.username,
-      //     value: user.id
-      //   };
-      // });
       this.setState({ users });
     });
   }
 
-  // loadUser() {
-  //   Adapter.getUser(this.userId).then(user => this.setState({ user }));
-  // }
-
   newDoc = () => {
-    Adapter.newDoc(this.userId).then(doc => {
-      // this.props.history.push(`/users/${this.user.id}/documents/${doc.id}`);
-    });
+    Adapter.newDoc(this.userId).then(doc => {});
   };
 
   handleNewClick = () => {
@@ -88,9 +75,11 @@ class App extends Component {
   };
 
   handleMusicClick = () => {
-    let status = this.state.musicStatus === Sound.status.PLAYING ? 
-      Sound.status.STOPPED : Sound.status.PLAYING;
-    this.setState({musicStatus: status});
+    let status =
+      this.state.musicStatus === Sound.status.PLAYING
+        ? Sound.status.STOPPED
+        : Sound.status.PLAYING;
+    this.setState({ musicStatus: status });
   };
 
   handleVersionSelect = version => {
@@ -162,10 +151,7 @@ class App extends Component {
         />
         <Route path="/signup" component={SignupForm} />
 
-        <Sound
-          url={music}
-          playStatus={this.state.musicStatus}
-        />
+        <Sound url={music} playStatus={this.state.musicStatus} />
       </Router>
     );
   }
